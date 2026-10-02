@@ -144,7 +144,9 @@ Ask the AI to select exactly two classifiers that suit the dataset. Prefer compl
 
 Do not select a model solely because it is complex or likely to maximize accuracy. State why each selected model fits the dataset.
 
-Tune using development data only. Match cross-validation to the data structure:
+Tune using development data only. Before cross-validation, check class counts and available groups or time windows. Reduce the number of folds when necessary; if valid training and validation folds cannot be formed, stop and ask the human.
+
+Match cross-validation to the data structure:
 
 - ordinarily use `StratifiedKFold(n_splits=5, shuffle=True, random_state=random_seed)` for independent rows;
 - use group-aware folds such as `StratifiedGroupKFold` or `GroupKFold` when groups must remain separate;
